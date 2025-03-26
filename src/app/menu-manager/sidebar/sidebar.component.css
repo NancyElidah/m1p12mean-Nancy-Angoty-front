@@ -1,0 +1,59 @@
+.sidebar {
+    width: 270px;
+    height: 100vh; 
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #333;
+    padding: 20px;
+    z-index: 100;
+    flex: 1; 
+    overflow-y: auto; 
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px; 
+}
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4); 
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.7); 
+}
+
+
+::ng-deep .p-panelmenu .p-panelmenu-content {
+    margin-left: 30px !important;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    color: #ffcc00 !important;
+
+}
+::ng-deep .sidebar .p-panelmenu .p-panelmenu-panel {
+    background-color: #222020 !important;
+    box-shadow: 1px 1px 1px rgb(54, 54, 54);
+    color: #ffcc00 !important;
+    width: 230px;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content,
+::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content .p-panelmenu-header-action {
+    color: #e6892c !important; 
+
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+::ng-deep .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content:hover {
+        color: #ffcc00 !important;
+}  
+
+
+

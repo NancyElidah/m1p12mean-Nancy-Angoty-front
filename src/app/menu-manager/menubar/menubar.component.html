@@ -1,0 +1,21 @@
+<div class="menubar-container">
+    <p-menubar [model]="menuItems" class="custom-menubar"[style]="{'background-color':'white'}" >
+        <ng-template pTemplate="start">
+            <img src="Logo.jfif" alt="Logo" width="60px" height="55px" class="menu-logo">
+            <!-- <button pButton class="menu-button" icon="pi pi-bars" (click)="onToggleSidebar()"></button> -->
+
+        </ng-template>
+
+        <ng-template pTemplate="end">
+            <div class="search-container">
+                <p-iconfield >
+                    <p-inputicon class="textA" styleClass="pi pi-search" />
+                    <input  type="text" pInputText [(ngModel)]="searchQuery" placeholder=""/>
+                    <p-avatar image="Logo.jfif" shape="circle"></p-avatar>
+                </p-iconfield>
+            </div>
+            <!-- <p-button icon="pi pi-bell" class="p-button-text"></p-button> -->
+            <!-- <p-button icon="pi pi-sign-out" class="p-button-danger p-button-text" (click)="logout()"></p-button> -->
+        </ng-template>
+    </p-menubar>
+</div>
