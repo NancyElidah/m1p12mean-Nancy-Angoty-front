@@ -5,6 +5,7 @@ import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { LoginClientComponent } from '../login-client/login-client.component';
+import { FooterComponent } from '../footer/footer.component';
 LoginClientComponent;
 @Component({
   selector: 'app-header-client',
@@ -14,6 +15,7 @@ LoginClientComponent;
     MenubarModule,
     ButtonModule,
     LoginClientComponent,
+    FooterComponent,
   ],
   templateUrl: './header-client.component.html',
   styleUrl: './header-client.component.css',
@@ -34,14 +36,12 @@ export class HeaderClientComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // C'est ici que le composant LoginClient est bien disponible.
     if (this.loginModal) {
       console.log('Login modal is ready');
     }
   }
 
   openLoginModal() {
-    // Vérifie si le composant est bien chargé avant d'essayer d'appeler la méthode.
     if (this.loginModal) {
       this.loginModal.showModal();
     } else {
