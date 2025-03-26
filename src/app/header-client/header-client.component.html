@@ -1,0 +1,18 @@
+<p-menubar [model]="items">
+  <ng-template pTemplate="start">
+    <div class="card flex justify-center"></div>
+  </ng-template>
+
+  <ng-template pTemplate="end">
+    <a href="#" (click)="openLoginModal()">
+      <button
+        pButton
+        label="Connexion"
+        icon="pi pi-user"
+        class="p-button-outlined"
+      ></button>
+    </a>
+  </ng-template>
+</p-menubar>
+
+<app-login-client></app-login-client>

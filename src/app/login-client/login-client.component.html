@@ -1,0 +1,48 @@
+<p-dialog
+  [(visible)]="displayModal"
+  [modal]="true"
+  [closable]="true"
+  header="Connexion"
+  [style]="{ width: '400px' }"
+>
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="email">Email</label>
+      <input
+        pInputText
+        id="email"
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Entrez votre email"
+      />
+    </div>
+
+    <div class="p-field">
+      <label for="password">Mot de passe</label>
+      <input
+        pInputText
+        id="password"
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Entrez votre mot de passe"
+      />
+    </div>
+
+    <div class="p-d-flex p-jc-end p-mt-3">
+      <button
+        pButton
+        type="button"
+        label="Annuler"
+        class="p-button-text"
+        (click)="hideModal()"
+      ></button>
+      <button
+        pButton
+        type="button"
+        label="Connexion"
+        class="p-button-primary"
+        (click)="login()"
+      ></button>
+    </div>
+  </div>
+</p-dialog>
