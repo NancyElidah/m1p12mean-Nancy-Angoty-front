@@ -6,9 +6,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
+import { UserService } from '../../service/user.service';
+import { SnackbarService } from '../../service/snack-bar.service';
 @Component({
   selector: 'app-login',
   imports: [
@@ -25,7 +27,12 @@ import { TabViewModule } from 'primeng/tabview';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private user_service: UserService,
+    private snackBar_service: SnackbarService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -36,9 +43,33 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      console.log('Username:', email);
-      console.log('Password:', password);
+      const loginData = this.loginForm.value;
+      console.log('Login Data:', loginData.email);
+      console.log('Login Data:', loginData.password);
+      const login = {
+        email: loginData.email,
+        password: loginData.password,
+      };
+      this.user_service.login(login).subscribe(
+        (response) => {
+          if (response.auth) {
+            const accessToken = response.token;
+            localStorage.setItem('token', accessToken);
+            localStorage.setItem('username', response.user);
+            this.snackBar_service.open(
+              'Bon retour ' + response.user,
+              'default'
+            );
+            this.router.navigate(['/accueil']);
+          }
+        },
+        (error) => {
+          this.snackBar_service.open(
+            'Échec de la connexion. Veuillez vérifier vos identifiants. ',
+            'error'
+          );
+        }
+      );
     }
   }
 }
