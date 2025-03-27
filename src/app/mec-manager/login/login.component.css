@@ -1,0 +1,34 @@
+.tab-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.p-tabview {
+  width: 800px; /* Augmente la largeur */
+  height: 500px; /* Augmente la hauteur */
+  border-radius: 12px; /* Coins arrondis */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Ombre douce */
+  padding: 20px;
+}
+
+.p-tabview-nav {
+  justify-content: center; /* Centre les onglets */
+}
+
+.p-field {
+  margin-bottom: 15px;
+}
+
+input[pInputText] {
+  width: 100%; /* Étend les inputs pour qu'ils remplissent leur conteneur */
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button[pButton] {
+  width: 100%; /* Étend le bouton pour occuper toute la largeur */
+  margin-top: 10px;
+}

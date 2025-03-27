@@ -1,0 +1,72 @@
+<app-header-client></app-header-client>
+<div
+  class="p-grid p-fluid p-d-flex p-jc-center"
+  style="max-width: 600px; margin: 0 auto"
+>
+  <p-toast></p-toast>
+
+  <h2>Inscription client</h2>
+  <div class="p-field p-col-12">
+    <label for="nom">Nom</label>
+    <input
+      id="nom"
+      type="text"
+      pInputText
+      [(ngModel)]="nom"
+      placeholder="Entrez votre nom"
+    />
+  </div>
+
+  <div class="p-field p-col-12">
+    <label for="prenom">Prénom</label>
+    <input
+      id="prenom"
+      type="text"
+      pInputText
+      [(ngModel)]="prenom"
+      placeholder="Entrez votre prénom"
+    />
+  </div>
+
+  <div class="p-field p-col-12">
+    <label for="email">Email</label>
+    <input
+      id="email"
+      type="email"
+      pInputText
+      [(ngModel)]="email"
+      placeholder="Entrez votre email"
+    />
+  </div>
+
+  <div class="p-field p-col-12">
+    <label for="password">Mot de passe</label>
+    <input
+      id="password"
+      type="password"
+      pInputText
+      [(ngModel)]="password"
+      placeholder="Entrez votre mot de passe"
+    />
+  </div>
+
+  <div class="p-field p-col-12">
+    <label for="contact">Contact</label>
+    <input
+      id="contact"
+      type="text"
+      pInputText
+      [(ngModel)]="contact"
+      placeholder="Entrez votre contact"
+    />
+  </div>
+  <div class="p-field p-col-12">
+    <button
+      pButton
+      type="button"
+      label="Sinscrire"
+      severity="warn"
+      (click)="saveUser()"
+    ></button>
+  </div>
+</div>
