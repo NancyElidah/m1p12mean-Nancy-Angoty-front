@@ -13,3 +13,7 @@ p-dialog {
     border: 1px solid #ccc;
   }
 }
+
+.header p-dialogue-header {
+  text-align: center;
+}

@@ -1,17 +1,35 @@
 <p-menubar [model]="items">
   <ng-template pTemplate="start">
-    <div class="card flex justify-center"></div>
+    <div class="card flex justify-center">
+      <img
+        src="../../assets/images/logo.JPG"
+        alt="Logo"
+        width="200px"
+        height="60px"
+        class="menu-logo"
+      />
+    </div>
   </ng-template>
 
   <ng-template pTemplate="end">
+    @if(!isLoggedIn()){
     <a href="#" (click)="openLoginModal()">
-      <button
-        pButton
+      <p-button
         label="Connexion"
         icon="pi pi-user"
-        class="p-button-outlined"
-      ></button>
+        variant="text"
+        severity="warn"
+      />
     </a>
+    }@if(isLoggedIn()){
+    <a href="#" (click)="logout()">
+      <p-button
+        label="Déconnexion"
+        icon="pi pi-sign-out"
+        variant="text"
+        severity="warn"
+      /> </a
+    >}
   </ng-template>
 </p-menubar>
 

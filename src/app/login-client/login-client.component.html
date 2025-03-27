@@ -27,20 +27,21 @@
         placeholder="Entrez votre mot de passe"
       />
     </div>
-
+    <div class="p-field">
+      <p-button
+        label="Créer un compte"
+        variant="text"
+        severity="warn"
+        [routerLink]="'/inscription-client'"
+      />
+    </div>
     <div class="p-d-flex p-jc-end p-mt-3">
-      <button
-        pButton
-        type="button"
-        label="Annuler"
-        class="p-button-text"
-        (click)="hideModal()"
-      ></button>
+      <p-button label="Annuler" variant="text" severity="warn" />
       <button
         pButton
         type="button"
         label="Connexion"
-        class="p-button-primary"
+        severity="warn"
         (click)="login()"
       ></button>
     </div>

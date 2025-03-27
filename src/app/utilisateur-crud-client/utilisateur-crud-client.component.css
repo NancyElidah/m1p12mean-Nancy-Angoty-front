@@ -1,0 +1,11 @@
+@import "../../../node_modules/primeflex/primeflex.css";
+@import "../../../node_modules/primeicons/primeicons.css";
+/* Dans le fichier .css du composant */
+.p-field {
+  margin-bottom: 1rem; /* Espacement entre les champs */
+}
+
+input {
+  width: 100%; /* Pour que les champs remplissent toute la largeur */
+  padding: 0.8rem; /* Pour rendre les champs plus grands */
+}

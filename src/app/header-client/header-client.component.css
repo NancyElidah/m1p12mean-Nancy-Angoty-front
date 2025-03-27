@@ -1,2 +1,6 @@
 @import "../../../node_modules/primeflex/primeflex.css";
 @import "../../../node_modules/primeicons/primeicons.css";
+
+img {
+  margin-right: 600px;
+}
