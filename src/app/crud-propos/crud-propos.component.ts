@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators,ReactiveFormsModule} from '@angular/forms';
-import { ProposService } from '../services/propos.service';
-import { SnackbarService } from '../services/snack-bar.service';
+import { ProposService } from '../service/propos.service';
+import { SnackbarService } from '../service/snack-bar.service';
 import { Propos } from '../models/Propos';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
