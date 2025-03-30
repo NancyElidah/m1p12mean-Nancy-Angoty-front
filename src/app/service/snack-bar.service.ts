@@ -16,7 +16,7 @@ export class SnackbarService {
       severity,
       summary,
       detail: message,
-      life: 3000,
+      life: 30000,
     });
   }
 }
