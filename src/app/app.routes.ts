@@ -5,6 +5,9 @@ import { UtilisateurCrudClientComponent } from './utilisateur-crud-client/utilis
 import { LoginComponent } from './mec-manager/login/login.component';
 import { AccueilComponent } from './mec-manager/header/accueil/accueil.component';
 import { InscriptionComponent } from './mec-manager/mecanicien/inscription/inscription.component';
+import { CrudProposComponent } from './crud-propos/crud-propos.component';
+import { CrudPrestationComponent } from './crud-prestation/crud-prestation.component';
+
 
 export const routes: Routes = [
   { path: '', component: HeaderClientComponent },
@@ -13,4 +16,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'inscription-mec', component: InscriptionComponent },
+  { path: 'propos', component: CrudProposComponent },
+  { path: 'prestations', component: CrudPrestationComponent }
 ];
