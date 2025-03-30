@@ -16,7 +16,7 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './crud-propos.component.html',
   styleUrls: ['./crud-propos.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule],  // Importer ReactiveFormsModule ici
+  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule],  
 })
 
 export class CrudProposComponent implements OnInit {
