@@ -6,9 +6,10 @@ import { RouterLink } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { SnackbarService } from '../service/snack-bar.service';
 import { Router } from '@angular/router';
+import { Toast } from 'primeng/toast';
 @Component({
   selector: 'app-login-client',
-  imports: [ButtonModule, FormsModule, DialogModule, RouterLink],
+  imports: [ButtonModule, FormsModule, DialogModule, RouterLink, Toast],
   templateUrl: './login-client.component.html',
   styleUrl: './login-client.component.css',
 })
