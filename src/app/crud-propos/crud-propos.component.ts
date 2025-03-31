@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators,ReactiveFormsModule} from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ProposService } from '../service/propos.service';
 import { SnackbarService } from '../service/snack-bar.service';
 import { Propos } from '../models/Propos';
@@ -16,33 +21,42 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './crud-propos.component.html',
   styleUrls: ['./crud-propos.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule],  
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    MessageModule,
+    TableModule,
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
+  ],
 })
-
 export class CrudProposComponent implements OnInit {
-  formPropos!: FormGroup;  
+  formPropos!: FormGroup;
   propos: Propos = new Propos();
-  items: Propos[] = []; 
+  items: Propos[] = [];
   constructor(
     private fb: FormBuilder,
     private proposService: ProposService,
     private snackbarService: SnackbarService,
-    private router: Router 
+    private router: Router
   ) {}
   visible: boolean = false;
   showDialog() {
-    this.visible = true; 
+    this.visible = true;
   }
   ngOnInit(): void {
     this.formPropos = this.fb.group({
-      intitule: ['', Validators.required],  
+      intitule: ['', Validators.required],
     });
     this.getAllPropos();
   }
 
   getAllPropos() {
     this.proposService.getPropos().subscribe(
-      (data) => {this.items = data;  },
+      (data) => {
+        this.items = data;
+      },
       (error) => {
         console.error('Erreur lors de la récupération des propos:', error);
         this.snackbarService.open(
@@ -63,9 +77,9 @@ export class CrudProposComponent implements OnInit {
             'Enregistrement Propos',
             'success'
           );
-          this.resetForm(); 
+          this.resetForm();
           this.getAllPropos();
-          this.router.navigate(['/propos']);  
+          this.router.navigate(['/propos']);
         },
         (error) => {
           console.error('Erreur lors de l’enregistrement :', error);
@@ -80,6 +94,6 @@ export class CrudProposComponent implements OnInit {
   }
 
   resetForm() {
-    this.formPropos.reset(); 
+    this.formPropos.reset();
   }
 }
