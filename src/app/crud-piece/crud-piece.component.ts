@@ -48,7 +48,7 @@ export class CrudPieceComponent implements OnInit {
   totalPieces: number = 0;
   currentPage: number = 1;
   rowsPerPage: number = 5;
-  rowsPerPageOptions: number[] = [1, 5, 10, 20, 30, 40, 50];
+  rowsPerPageOptions: number[] = [10, 50, 100];
   formPiece!: FormGroup;
   visible = false;
   piece: Piece = new Piece();
