@@ -5,61 +5,38 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ProposService } from '../service/propos.service';
-import { SnackbarService } from '../service/snack-bar.service';
+import { ProposService } from '../services/propos.service';
+import { SnackbarService } from '../services/snack-bar.service';
 import { Propos } from '../models/Propos';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MessageModule } from 'primeng/message';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-crud-propos',
-  templateUrl: './crud-propos.component.html',
+  templateUrl: './test.component.html',
   styleUrls: ['./crud-propos.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule],  // Importer ReactiveFormsModule ici
+  imports: [ReactiveFormsModule, CommonModule, MessageModule],  // Importer ReactiveFormsModule ici
 })
-export class CrudProposComponent implements OnInit {
+export class TestComponent implements OnInit {
   formPropos!: FormGroup;  
   propos: Propos = new Propos();
-  items: Propos[] = []; 
   constructor(
     private fb: FormBuilder,
     private proposService: ProposService,
     private snackbarService: SnackbarService,
     private router: Router 
   ) {}
-  visible: boolean = false;
-  showDialog() {
-    this.visible = true; 
-  }
+
   ngOnInit(): void {
     this.formPropos = this.fb.group({
       intitule: ['', Validators.required],  
     });
-    this.getAllPropos();
   }
-  
-  getAllPropos() {
-    this.proposService.getPropos().subscribe(
-      (data) => {this.items = data;  },
-      (error) => {
-        console.error('Erreur lors de la récupération des propos:', error);
-        this.snackbarService.open(
-          'Erreur lors de la récupération des données.',
-          'Récupération Propos',
-          'error'
-        );
-      }
-    );
-  }
+
   onSubmit() {
     if (this.formPropos.valid) {
-      console.log('metyyyy')
       this.propos = this.formPropos.value;
       this.proposService.addPropos(this.propos).subscribe(
         (response) => {
@@ -69,7 +46,6 @@ export class CrudProposComponent implements OnInit {
             'success'
           );
           this.resetForm(); 
-          this.getAllPropos();
           this.router.navigate(['/propos']);  
         },
         (error) => {
@@ -85,6 +61,6 @@ export class CrudProposComponent implements OnInit {
   }
 
   resetForm() {
-    this.formPropos.reset(); 
+    this.formPropos.reset();  // Réinitialiser le formulaire
   }
 }
