@@ -1,3 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
-@import "../node_modules/primeflex/primeflex.css";
-@import "../node_modules/primeicons/primeicons.css";
+/* Personnaliser le fond de la page */
+body {
+  /* background-color: rgb(255, 240, 240); */
+    background-color:rgb(68, 64, 64) !important;
+    /* background-color: white; */
+    color: white;
+  }
+
+  /* .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background: #f5f5f5;
+    min-height: calc(100vh - 60px);
+    overflow-y: auto;
+} */
+  
+  /* Pers onnaliser le fond des boutons */
+  /* .p-button {
+    background-color: #e6892c !important; /* Jaune-orangé */
+    /* color: black !important; */
+    /* border: 1px solid black !important; */
+  */*
+  
+  /* Personnaliser l'ombre des boutons */
+  .p-button:hover {
+    background-color: #ffcc00 !important; /* Jaune doré */
+    color: black !important;
+  }
+  
+  /* Personnaliser les cartes */
+  .p-card {
+    background-color: black !important;
+    border: 1px solid white !important;
+    color: white;
+  }
+  
+  /* Modifier le fond des en-têtes de carte */
+  .p-card-title {
+    background-color: #e6892c !important; /* Jaune-orangé */
+    color: black !important;
+  }
+  
+  /* Personnaliser le texte général */
+  h1, h2, h3, p {
+    color: white !important;
+  }
+  
+  /* Personnaliser les champs de saisie */
+  .p-inputtext {
+    border: 1px solid #e6892c !important; /* Jaune-orangé */
+  }
+  
+  /* Personnaliser les liens */
+  /* a { */
+    /* color: #e6892c !important; Jaune-orangé */
+  /* } */
+  
+  /* a:hover { */
+    /* color: #ffcc00 !important; Jaune doré */
+  /* } */
+  

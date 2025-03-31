@@ -1,21 +1,27 @@
-<app-header></app-header>
-<div class="page-title">
+<div class="card">
   <div class="header-container">
-    <h1 class="p-text-left">Liste des préstations</h1>
+    <h1 class="p-text-left">Liste des pièces</h1>
     <p-button icon="pi pi-plus" (click)="showDialog()" severity="warn" />
   </div>
-  <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table
+    [value]="displayedPieces"
+    [paginator]="true"
+    [rows]="rowsPerPage"
+    [totalRecords]="totalPieces"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    (onPageChange)="onPageChange($event)"
+  >
     <ng-template pTemplate="header">
       <tr>
-        <th class="center-align">Intitule</th>
-        <th class="center-align">Prix</th>
-        <th class="center-align">Action</th>
+        <th>Intitulé</th>
+        <th>Prix</th>
+        <th>Actions</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-item>
+    <ng-template pTemplate="body" let-piece>
       <tr>
-        <td class="center-align">{{ item.intitule }}</td>
-        <td class="center-align">{{ item.prix }}</td>
+        <td>{{ piece.intitule }}</td>
+        <td>{{ piece.prix }}</td>
         <td class="center-align">
           <p-button
             icon="pi pi-trash"
@@ -40,13 +46,23 @@
       </tr>
     </ng-template>
   </p-table>
+
   <p-dialog
-    header="Nouvelle prestation"
+    header="Nouvelle Pièce"
     [modal]="true"
     [(visible)]="visible"
     [style]="{ width: '25rem' }"
   >
-    <form [formGroup]="formPrestation" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formPiece" (ngSubmit)="onSubmit()">
+      <div
+        *ngIf="
+          (formPiece.get('intitule')?.invalid &&
+            formPiece.get('intitule')?.touched) ||
+          formPiece.get('prix')?.invalid
+        "
+      >
+        <p-message severity="error">Intitulé du prestation requis.</p-message>
+      </div>
       <div class="p-field">
         <p>
           <input
@@ -55,7 +71,7 @@
             pInputText
             formControlName="intitule"
             class="p-inputtext p-component"
-            placeholder="Entrez l'intitulé du prestation"
+            placeholder="Entrez l'intitulé de la pièce"
           />
         </p>
         <p>
@@ -65,18 +81,9 @@
             pInputText
             formControlName="prix"
             class="p-inputtext p-component"
-            placeholder="Entrez le prix de la prestation"
+            placeholder="Entrez le prix de la pièce"
           />
         </p>
-        <div
-          *ngIf="
-            (formPrestation.get('intitule')?.invalid &&
-              formPrestation.get('intitule')?.touched) ||
-            formPrestation.get('prix')?.invalid
-          "
-        >
-          <p-message severity="error">Intitulé du prestation requis.</p-message>
-        </div>
       </div>
       <div class="flex justify-end gap-2">
         <p-button
@@ -88,7 +95,7 @@
           label="Ajouter"
           type="submit"
           severity="warn"
-          [disabled]="formPrestation.invalid"
+          [disabled]="formPiece.invalid"
         />
       </div>
     </form>

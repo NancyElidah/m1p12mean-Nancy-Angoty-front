@@ -1,0 +1,9 @@
+@import "../../../node_modules/primeflex/primeflex.css";
+@import "../../../node_modules/primeicons/primeicons.css";
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
