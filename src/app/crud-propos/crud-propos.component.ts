@@ -15,13 +15,15 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { HeaderComponent } from '../mec-manager/header/header/header.component';
+
 
 @Component({
   selector: 'app-crud-propos',
   templateUrl: './crud-propos.component.html',
   styleUrls: ['./crud-propos.component.css'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule],  // Importer ReactiveFormsModule ici
+  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule, HeaderComponent],  // Importer ReactiveFormsModule ici
 })
 export class CrudProposComponent implements OnInit {
   formPropos!: FormGroup;  
