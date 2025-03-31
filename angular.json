@@ -35,14 +35,16 @@
             "production": {
               "budgets": [
                 {
-                  "type": "initial",
+                  "type": "bundle",
+                  "name": "main",
                   "maximumWarning": "2MB",
                   "maximumError": "3MB"
                 },
                 {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "type": "asset",
+                  "name": "primeflex.css",
+                  "maximumWarning": "500KB",  
+                  "maximumError": "600KB"
                 }
               ],
               "outputHashing": "all"
