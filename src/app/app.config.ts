@@ -1,11 +1,20 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule,
+  provideHttpClient,
+} from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { TokenInterceptor } from './service/token-interceptor.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +26,12 @@ export const appConfig: ApplicationConfig = {
         preset: Aura,
       },
     }),
+    importProvidersFrom(HttpClientModule),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
     provideHttpClient(),
     MessageService,
   ],

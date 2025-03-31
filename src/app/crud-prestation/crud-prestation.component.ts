@@ -10,13 +10,15 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { HeaderComponent } from '../mec-manager/header/header/header.component';
+
 
 @Component({
   selector: 'app-crud-prestation',
   templateUrl: './crud-prestation.component.html',
   styleUrl: './crud-prestation.component.css',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule]
+  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule, HeaderComponent]
 
 })
 export class CrudPrestationComponent {

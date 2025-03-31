@@ -69,6 +69,7 @@ export class CrudProposComponent implements OnInit {
   }
   onSubmit() {
     if (this.formPropos.valid) {
+      // console.log('metyyyy');
       this.propos = this.formPropos.value;
       this.proposService.addPropos(this.propos).subscribe(
         (response) => {
