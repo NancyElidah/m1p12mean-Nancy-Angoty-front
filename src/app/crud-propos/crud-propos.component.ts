@@ -51,6 +51,7 @@ export class CrudProposComponent implements OnInit {
     });
     this.getAllPropos();
   }
+
   getAllPropos() {
     this.proposService.getPropos().subscribe(
       (data) => {
