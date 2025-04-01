@@ -1,0 +1,80 @@
+<div class="tab-container">
+  <p-tabView>
+    <p-tabPanel header="Inscription d'un mécanicien">
+      <form (ngSubmit)="onRegister()" [formGroup]="formIns">
+        <div class="p-field">
+          <label for="nom">Nom</label>
+          <input
+            id="nom"
+            type="text"
+            pInputText
+            formControlName="nom"
+            required
+            placeholder="Entrez votre nom"
+          />
+        </div>
+        <div class="p-field">
+          <label for="prenom">Prénom</label>
+          <input
+            id="prenom"
+            type="text"
+            pInputText
+            formControlName="prenom"
+            required
+            placeholder="Entrez votre prénom"
+          />
+        </div>
+        <div class="p-field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            pInputText
+            formControlName="email"
+            required
+            placeholder="Entrez votre Email"
+          />
+        </div>
+        <div class="p-field">
+          <label for="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            pInputText
+            formControlName="password"
+            required
+            placeholder="Entrez votre Mot de passe"
+          />
+        </div>
+        <div class="p-field">
+          <label for="contact">Contact</label>
+          <input
+            id="contact"
+            type="text"
+            pInputText
+            formControlName="contact"
+            required
+            placeholder="Entrez votre Contact"
+          />
+        </div>
+        <div class="button-group">
+          <button
+            pButton
+            type="submit"
+            label="S'inscrire"
+            icon="pi pi-check"
+            severity="warn"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label="Annuler"
+            icon="pi pi-times"
+            severity="secondary"
+            (click)="goToLogin()"
+          ></button>
+        </div>
+      </form>
+    </p-tabPanel>
+  </p-tabView>
+</div>

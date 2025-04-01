@@ -1,0 +1,45 @@
+<div class="tab-container">
+  <p-tabView>
+    <p-tabPanel header="Connexion">
+      <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+        <div class="p-field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="text"
+            pInputText
+            formControlName="email"
+            required
+            placeholder="Entrez votre Email"
+          />
+        </div>
+        <div class="p-field">
+          <label for="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            pInputText
+            formControlName="password"
+            required
+            placeholder="Entrez votre Mot de passe"
+          />
+        </div>
+        <div class="p-field">
+          <p-button
+            label="Créer un compte"
+            variant="text"
+            severity="warn"
+            [routerLink]="'/inscription-mec'"
+          />
+        </div>
+        <button
+          pButton
+          type="submit"
+          label="Se connecter"
+          icon="pi pi-sign-in"
+          severity="warn"
+        ></button>
+      </form>
+    </p-tabPanel>
+  </p-tabView>
+</div>
