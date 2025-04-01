@@ -30,6 +30,7 @@
               "budgets": [
                 {
                   "type": "initial",
+<<<<<<< HEAD
                   "maximumWarning": "1MB",
                   "maximumError": "5MB"
                 },
@@ -37,6 +38,15 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "500KB",
                   "maximumError": "600KB"
+=======
+                  "maximumWarning": "3mb",
+                  "maximumError": "4mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "400kb",
+                  "maximumError": "500kb"
+>>>>>>> 4a334af (add tache)
                 }
               ],
               "outputHashing": "all"
