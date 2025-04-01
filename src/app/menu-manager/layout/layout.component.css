@@ -5,7 +5,7 @@
 }
 
 app-menubar {
-    width: 951px;
+    width: 1000px;
     position: fixed;
     top: 0;
     left: 0;
@@ -24,10 +24,4 @@ app-sidebar {
     flex-shrink: 0;
 }
 
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
-    background: #f5f5f5;
-    min-height: calc(100vh - 60px);
-    overflow-y: auto;
-}
+
