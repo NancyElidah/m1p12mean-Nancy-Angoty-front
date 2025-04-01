@@ -1,24 +1,26 @@
-<div class="card">
-  <div class="header-container">
-    <h1 class="p-text-left">Liste des tâches</h1>
-    <p-button
-      icon="pi pi-plus"
-      (click)="showDialog()"
-      severity="warn"
-    ></p-button>
-  </div>
-
-  <p-table [value]="taches" [paginator]="true" [rows]="10" tache>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Date</th>
-        <th>Voiture</th>
-        <th>Mécanicien</th>
-        <th>Préstation</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-piece>
-      <tr></tr>
-    </ng-template>
-  </p-table>
-</div>
+<p-table [value]="taches_table" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Date</th>
+      <th>Voiture</th>
+      <th>Mécanicien</th>
+      <th>Prestation</th>
+      <th>Prix Total</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-tache>
+    <tr>
+      <td>{{ tache.date_attribution | date : "dd/MM/yyyy" }}</td>
+      <td>{{ tache.id_voiture.immatriculation }}</td>
+      <td>{{ tache.id_mecanicien.nom }} {{ tache.id_mecanicien.prenom }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let rep of tache.details_rep">
+            {{ rep.prestation }} ({{ rep.quantite }}x {{ rep.prix }} Ar)
+          </li>
+        </ul>
+      </td>
+      <td>{{ tache.prix_total | number }} Ar</td>
+    </tr>
+  </ng-template>
+</p-table>
