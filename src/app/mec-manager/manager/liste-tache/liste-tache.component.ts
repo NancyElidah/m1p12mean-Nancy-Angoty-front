@@ -27,11 +27,7 @@ import { Tache } from '../../../models/Tache';
 })
 export class ListeTacheComponent implements OnInit {
   filtreTache!: FormGroup;
-<<<<<<< HEAD
-  taches: Tache[] = [];
-=======
   taches_table: Tache[] = [];
->>>>>>> develop
 
   constructor(private tache_serivce: TacheService) {}
   ngOnInit() {
@@ -39,23 +35,11 @@ export class ListeTacheComponent implements OnInit {
       selectedCity: new FormControl(''),
       prix: new FormControl(''),
     });
-<<<<<<< HEAD
-=======
     this.loadTache();
->>>>>>> develop
   }
   loadTache() {
     this.tache_serivce.getAll().subscribe(
       (response) => {
-<<<<<<< HEAD
-        this.taches = response;
-      },
-      (error) => {
-        console.error('Erreur lors du chargement des pièces:', error);
-      }
-    );
-  }
-=======
         console.log('Réponse API:', response); // 👈 Vérifie ici
 
         // Vérifie si response est un objet contenant `taches`
@@ -99,6 +83,5 @@ export class ListeTacheComponent implements OnInit {
     );
   }
 
->>>>>>> develop
   showDialog() {}
 }

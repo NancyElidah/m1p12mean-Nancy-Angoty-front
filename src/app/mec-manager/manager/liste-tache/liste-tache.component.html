@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-<div class="card">
-  <div class="header-container">
-    <h1 class="p-text-left">Liste des tâches</h1>
-    <p-button
-      icon="pi pi-plus"
-      (click)="showDialog()"
-      severity="warn"
-    ></p-button>
-  </div>
-
-  <p-table [value]="taches" [paginator]="true" [rows]="10" tache>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Date</th>
-        <th>Voiture</th>
-        <th>Mécanicien</th>
-        <th>Préstation</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-piece>
-      <tr></tr>
-    </ng-template>
-  </p-table>
-</div>
-=======
 <p-table [value]="taches_table" [paginator]="true" [rows]="10">
   <ng-template pTemplate="header">
     <tr>
@@ -50,4 +24,3 @@
     </tr>
   </ng-template>
 </p-table>
->>>>>>> develop

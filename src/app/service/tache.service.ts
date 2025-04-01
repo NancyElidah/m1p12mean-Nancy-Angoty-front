@@ -11,10 +11,6 @@ export class TacheService {
   private apiUrl = 'http://localhost:5000/tache/';
 
   getAll(): Observable<Tache[]> {
-<<<<<<< HEAD
-    return this.http.get<Tache[]>(`${this.apiUrl}`);
-=======
     return this.http.get<Tache[]>(`${this.apiUrl}findAll`);
->>>>>>> develop
   }
 }
