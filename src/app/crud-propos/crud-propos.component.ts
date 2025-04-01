@@ -17,13 +17,11 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { HeaderComponent } from '../mec-manager/header/header/header.component';
 
-
 @Component({
   selector: 'app-crud-propos',
   templateUrl: './crud-propos.component.html',
   styleUrls: ['./crud-propos.component.css'],
   standalone: true,
-<<<<<<< HEAD
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -32,10 +30,8 @@ import { HeaderComponent } from '../mec-manager/header/header/header.component';
     ButtonModule,
     DialogModule,
     InputTextModule,
-  ],
-=======
-  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule, HeaderComponent],  // Importer ReactiveFormsModule ici
->>>>>>> a161d4a169dee2e8b0f1de1434c29382b371054c
+    HeaderComponent,
+  ], // Importer ReactiveFormsModule ici
 })
 export class CrudProposComponent implements OnInit {
   formPropos!: FormGroup;
@@ -57,7 +53,7 @@ export class CrudProposComponent implements OnInit {
     });
     this.getAllPropos();
   }
-  
+
   getAllPropos() {
     this.proposService.getPropos().subscribe(
       (data) => {
@@ -75,11 +71,7 @@ export class CrudProposComponent implements OnInit {
   }
   onSubmit() {
     if (this.formPropos.valid) {
-<<<<<<< HEAD
-      // console.log('metyyyy');
-=======
-      console.log('metyyyy')
->>>>>>> a161d4a169dee2e8b0f1de1434c29382b371054c
+      console.log('metyyyy');
       this.propos = this.formPropos.value;
       this.proposService.addPropos(this.propos).subscribe(
         (response) => {
