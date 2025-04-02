@@ -4,3 +4,12 @@
   justify-content: space-between;
   width: 100%;
 }
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.filter-btn {
+  margin: 0 10px;
+}

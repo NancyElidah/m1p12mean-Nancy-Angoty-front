@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import { Component, OnInit } from '@angular/core';
 import { TacheService } from '../../../service/tache.service';
 import { Tache } from '../../../models/Tache';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-liste-tache',
@@ -21,6 +22,7 @@ import { Tache } from '../../../models/Tache';
     FormsModule,
     DropdownModule,
     ReactiveFormsModule,
+    TooltipModule,
   ],
   templateUrl: './liste-tache.component.html',
   styleUrl: './liste-tache.component.css',
@@ -28,6 +30,8 @@ import { Tache } from '../../../models/Tache';
 export class ListeTacheComponent implements OnInit {
   filtreTache!: FormGroup;
   taches_table: Tache[] = [];
+  titre: string = '';
+  activeTab: string = 'en-cours';
 
   constructor(private tache_serivce: TacheService) {}
   ngOnInit() {
@@ -35,52 +39,49 @@ export class ListeTacheComponent implements OnInit {
       selectedCity: new FormControl(''),
       prix: new FormControl(''),
     });
-    this.loadTache();
+    this.loadTacheEnCour();
   }
-  loadTache() {
-    this.tache_serivce.getAll().subscribe(
-      (response) => {
-        console.log('Réponse API:', response); // 👈 Vérifie ici
 
-        // Vérifie si response est un objet contenant `taches`
-        if (response) {
-          this.taches_table = response.map((tache: any) => ({
-            id: tache._id,
-            id_voiture: {
-              _id: tache.id_voiture._id,
-              immatriculation: tache.id_voiture.immatriculation,
-            },
-            date_attribution: new Date(tache.date_attribution),
-            date_reparation: new Date(tache.date_reparation),
-            id_mecanicien: {
-              _id: tache.id_mecanicien._id,
-              nom: tache.id_mecanicien.nom,
-              prenom: tache.id_mecanicien.prenom,
-              email: tache.id_mecanicien.email,
-            },
-            prix_total: tache.prix_total,
-            details_rep: tache.details_rep.map((rep: any) => ({
-              prestation: rep.prestation,
-              quantite: rep.quantite,
-              prix: rep.prix,
-              prix_total: rep.prix_total,
-              paye: rep.paye,
-              details_pieces: rep.details_pieces.map((piece: any) => ({
-                id_piece: piece.id_piece,
-                quantite: piece.quantite,
-                prix: piece.prix,
-                prix_total: piece.prix_total,
-              })),
-            })),
-          }));
-        } else {
-          console.error('Format de réponse inattendu:', response);
-        }
+  loadTacheEnAttente() {
+    this.activeTab = 'en-attente';
+    this.titre = 'Liste des tâches en attente';
+    this.tache_serivce.getAllEnAttente().subscribe({
+      next: (data: any) => {
+        this.taches_table = Array.isArray(data.tache) ? data.tache : [];
       },
-      (error) => {
-        console.error('Erreur lors du chargement des tâches:', error);
-      }
-    );
+      error: (error) => {
+        console.error('Erreur lors du chargement des tâches en attente', error);
+        this.taches_table = [];
+      },
+    });
+  }
+
+  loadTacheEnCour() {
+    this.activeTab = 'en-cours';
+    this.titre = 'Liste des tâches en cours';
+    this.tache_serivce.getAllEnCours().subscribe({
+      next: (data: any) => {
+        this.taches_table = Array.isArray(data.tache) ? data.tache : [];
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des tâches en cours', error);
+        this.taches_table = [];
+      },
+    });
+  }
+
+  loadTacheTerminer() {
+    // this.activeTab = 'terminer';
+    // this.titre = 'Liste des tâches terminées';
+    // this.tache_serivce.getTacheTerminer().subscribe({
+    //   next: (data: any) => {
+    //     this.taches_table = Array.isArray(data.tache) ? data.tache : [];
+    //   },
+    //   error: (error) => {
+    //     console.error('Erreur lors du chargement des tâches terminées', error);
+    //     this.taches_table = [];
+    //   },
+    // });
   }
 
   showDialog() {}
