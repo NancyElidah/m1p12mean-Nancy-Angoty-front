@@ -21,7 +21,7 @@
     <ng-template pTemplate="body" let-piece>
       <tr>
         <td>{{ piece.intitule }}</td>
-        <td>{{ piece.prix }}</td>
+        <td>{{ piece.prix | number }} Ar</td>
         <td class="center-align">
           <p-button
             icon="pi pi-trash"

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators,ReactiveFormsModule} from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { PrestationService } from '../service/prestation.service';
 import { SnackbarService } from '../service/snack-bar.service';
 import { Prestation } from '../models/Prestation';
@@ -10,42 +15,49 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { HeaderComponent } from '../mec-manager/header/header/header.component';
-
 
 @Component({
   selector: 'app-crud-prestation',
   templateUrl: './crud-prestation.component.html',
   styleUrl: './crud-prestation.component.css',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MessageModule,TableModule, ButtonModule, DialogModule, InputTextModule, HeaderComponent]
-
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    MessageModule,
+    TableModule,
+    ButtonModule,
+    DialogModule,
+    InputTextModule,
+  ],
 })
 export class CrudPrestationComponent {
-  formPrestation!: FormGroup;  
+  formPrestation!: FormGroup;
   propos: Prestation = new Prestation();
-  items: Prestation[] = []; 
+  items: Prestation[] = [];
   constructor(
     private fb: FormBuilder,
     private prestationService: PrestationService,
     private snackbarService: SnackbarService,
-    private router: Router 
+    private router: Router
   ) {}
   visible: boolean = false;
   showDialog() {
-    this.visible = true; 
+    this.visible = true;
   }
   ngOnInit(): void {
     this.formPrestation = this.fb.group({
-      intitule: ['', Validators.required],  
-      prix: ['', Validators.required]
+      intitule: ['', Validators.required],
+      prix: ['', Validators.required],
     });
     this.getAllPropos();
   }
-  
+
   getAllPropos() {
     this.prestationService.getPrestation().subscribe(
-      (data) => {this.items = data;  },
+      (data) => {
+        this.items = data;
+      },
       (error) => {
         console.error('Erreur lors de la récupération des propos:', error);
         this.snackbarService.open(
@@ -66,9 +78,9 @@ export class CrudPrestationComponent {
             'Enregistrement Prestation',
             'success'
           );
-          this.resetForm(); 
+          this.resetForm();
           this.getAllPropos();
-          this.router.navigate(['/prestation']);  
+          this.router.navigate(['/prestation']);
         },
         (error) => {
           console.error('Erreur lors de l’enregistrement :', error);
@@ -83,6 +95,6 @@ export class CrudPrestationComponent {
   }
 
   resetForm() {
-    this.formPrestation.reset(); 
+    this.formPrestation.reset();
   }
 }

@@ -9,6 +9,7 @@ import { CrudProposComponent } from './crud-propos/crud-propos.component';
 import { CrudPrestationComponent } from './crud-prestation/crud-prestation.component';
 import { CrudPieceComponent } from './crud-piece/crud-piece.component';
 import { ListeTacheComponent } from './mec-manager/manager/liste-tache/liste-tache.component';
+import { LayoutComponent } from './menu-manager/layout/layout.component';
 
 export const routes: Routes = [
   { path: '', component: HeaderClientComponent },
@@ -17,8 +18,14 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'inscription-mec', component: InscriptionComponent },
-  { path: 'propos', component: CrudProposComponent },
-  { path: 'prestations', component: CrudPrestationComponent },
-  { path: 'piece', component: CrudPieceComponent },
-  { path: 'tache', component: ListeTacheComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'taches', component: ListeTacheComponent },
+      { path: 'propos', component: CrudProposComponent },
+      { path: 'prestations', component: CrudPrestationComponent },
+      { path: 'piece', component: CrudPieceComponent },
+    ],
+  },
 ];

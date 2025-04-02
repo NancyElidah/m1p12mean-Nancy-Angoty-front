@@ -1,15 +1,19 @@
 .header-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
-}
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  margin-bottom: 15px; /* Ajoute un espace sous le titre */
 }
 
-.filter-btn {
-  margin: 0 10px;
+.filter-buttons {
+  display: flex;
+  gap: 10px; /* Espacement entre les boutons */
+  margin-bottom: 20px; /* Espacement sous les boutons */
+}
+
+.active-btn {
+  background-color: orange;
+  color: black !important;
+  border-radius: 8px;
+  border-color: rgb(239, 185, 83);
 }

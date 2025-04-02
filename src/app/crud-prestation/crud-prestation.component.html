@@ -1,5 +1,4 @@
-<app-header></app-header>
-<div class="page-title">
+<div class="card">
   <div class="header-container">
     <h1 class="p-text-left">Liste des préstations</h1>
     <p-button icon="pi pi-plus" (click)="showDialog()" severity="warn" />
@@ -15,7 +14,7 @@
     <ng-template pTemplate="body" let-item>
       <tr>
         <td class="center-align">{{ item.intitule }}</td>
-        <td class="center-align">{{ item.prix }}</td>
+        <td class="center-align">{{ item.prix | number }} Ar</td>
         <td class="center-align">
           <p-button
             icon="pi pi-trash"

@@ -81,7 +81,13 @@ export class SidebarComponent {
         {
           label: 'Gestion des réparations',
           command: () => {
-            this.router.navigate(['/reparations']);
+            this.router.navigate(['/taches']);
+          },
+        },
+        {
+          label: 'Gestion des pièces',
+          command: () => {
+            this.router.navigate(['/piece']);
           },
         },
       ],

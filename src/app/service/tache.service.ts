@@ -19,4 +19,7 @@ export class TacheService {
   getAllEnAttente(): Observable<Tache[]> {
     return this.http.get<Tache[]>(`${this.apiUrl}findAllEnAttente`);
   }
+  getAllTerminer(): Observable<Tache[]> {
+    return this.http.get<Tache[]>(`${this.apiUrl}fin`);
+  }
 }

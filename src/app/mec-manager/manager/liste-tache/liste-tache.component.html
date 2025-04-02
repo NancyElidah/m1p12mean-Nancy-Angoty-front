@@ -1,26 +1,4 @@
 <div class="card">
-  <!-- Boutons pour filtrer les tâches -->
-  <div class="filter-buttons">
-    <p-button
-      label="En attente"
-      (click)="loadTacheEnAttente()"
-      [severity]="activeTab === 'en-attente' ? 'warn' : null"
-      class="filter-btn"
-    />
-    <p-button
-      label="En cours"
-      (click)="loadTacheEnCour()"
-      [severity]="activeTab === 'en-cours' ? 'warn' : null"
-      class="filter-btn"
-    />
-    <p-button
-      label="Terminé"
-      (click)="loadTacheTerminer()"
-      [severity]="activeTab === 'terminer' ? 'warn' : null"
-      class="filter-btn"
-    />
-  </div>
-
   <div class="header-container">
     <h1 class="p-text-left">{{ titre }}</h1>
     <p-button
@@ -29,6 +7,53 @@
       severity="warn"
       pTooltip="Ajouter une nouvelle tâche"
       tooltipPosition="bottom"
+    />
+  </div>
+  <div class="filter-buttons">
+    <p-button
+      severity="warn"
+      label="En attente"
+      (click)="loadTacheEnAttente()"
+      [ngClass]="{
+        'active-btn': activeTab === 'en-attente',
+        'inactive-btn': activeTab !== 'en-attente'
+      }"
+      [style]="{
+        'background-color': 'transparent',
+        color: 'white',
+        'border-color': 'orange',
+        'margin-left': '10px'
+      }"
+    />
+    <p-button
+      severity="warn"
+      label="En cours"
+      (click)="loadTacheEnCour()"
+      [ngClass]="{
+        'active-btn': activeTab === 'en-cours',
+        'inactive-btn': activeTab !== 'en-cours'
+      }"
+      [style]="{
+        'background-color': 'transparent',
+        color: 'white',
+        'border-color': 'orange',
+        'margin-left': '10px'
+      }"
+    />
+    <p-button
+      severity="warn"
+      label="Terminé"
+      (click)="loadTacheTerminer()"
+      [ngClass]="{
+        'active-btn': activeTab === 'terminer',
+        'inactive-btn': activeTab !== 'terminer'
+      }"
+      [style]="{
+        'background-color': 'transparent',
+        color: 'white',
+        'border-color': 'orange',
+        'margin-left': '10px'
+      }"
     />
   </div>
 
@@ -59,4 +84,116 @@
       </tr>
     </ng-template>
   </p-table>
+  <p-dialog
+    header="Ajout d'une nouvelle tâche"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '35rem' }"
+  >
+    <form [formGroup]="formTache" (ngSubmit)="onSubmit()">
+      <div *ngIf="formTache.invalid && formTache.touched" class="p-mb-3">
+        <p-message severity="error"
+          >Veuillez remplir tous les champs requis.</p-message
+        >
+      </div>
+
+      <div class="p-field">
+        <label for="voiture">Voiture</label>
+        <input
+          id="voiture"
+          type="text"
+          pInputText
+          formControlName="voiture"
+          class="p-inputtext"
+          placeholder="Entrez la voiture"
+        />
+      </div>
+
+      <div class="p-field">
+        <label for="date_prevu">Date prévue</label>
+        <input
+          id="date_prevu"
+          type="date"
+          pInputText
+          formControlName="date_prevu"
+          class="p-inputtext"
+        />
+      </div>
+
+      <div class="p-field">
+        <label for="mecanicien">Mécanicien</label>
+        <input
+          id="mecanicien"
+          type="text"
+          pInputText
+          formControlName="mecanicien"
+          class="p-inputtext"
+          placeholder="Nom du mécanicien"
+        />
+      </div>
+
+      <div class="p-field">
+        <label>Prestations</label>
+        <div formArrayName="prestations" class="p-col-12">
+          <div
+            *ngFor="let prestation of prestations.controls; let i = index"
+            [formGroupName]="i"
+            class="p-grid p-align-center"
+          >
+            <div class="p-col-5">
+              <input
+                type="text"
+                pInputText
+                formControlName="nom"
+                class="p-inputtext"
+                placeholder="Nom de la prestation"
+              />
+            </div>
+            <div class="p-col-5">
+              <input
+                type="number"
+                pInputText
+                formControlName="quantite"
+                class="p-inputtext"
+                placeholder="Quantité"
+              />
+            </div>
+            <div class="p-col-2">
+              <button
+                type="button"
+                (click)="removePrestation(i)"
+                class="p-button p-button-danger p-button-sm"
+              >
+                -
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-mt-2 p-mb-3 text-center">
+        <button
+          type="button"
+          (click)="addPrestation()"
+          class="p-button p-button-success"
+        >
+          + Prestation
+        </button>
+      </div>
+
+      <div class="flex justify-end gap-3">
+        <p-button
+          label="Annuler"
+          severity="secondary"
+          (click)="visible = false"
+        />
+        <p-button
+          label="Ajouter"
+          type="submit"
+          severity="warn"
+          [disabled]="formTache.invalid"
+        />
+      </div>
+    </form>
+  </p-dialog>
 </div>
