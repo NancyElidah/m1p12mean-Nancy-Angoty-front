@@ -13,4 +13,10 @@ export class TacheService {
   getAll(): Observable<Tache[]> {
     return this.http.get<Tache[]>(`${this.apiUrl}findAll`);
   }
+  getAllEnCours(): Observable<Tache[]> {
+    return this.http.get<Tache[]>(`${this.apiUrl}en_cours`);
+  }
+  getAllEnAttente(): Observable<Tache[]> {
+    return this.http.get<Tache[]>(`${this.apiUrl}findAllEnAttente`);
+  }
 }
