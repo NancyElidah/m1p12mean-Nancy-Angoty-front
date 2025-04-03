@@ -1,4 +1,4 @@
 export class Propos{
-    idPropos?: String;
+    _id?: String;
     intitule!: String;
 }
