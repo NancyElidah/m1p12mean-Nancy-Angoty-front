@@ -1,26 +1,62 @@
-<p-table [value]="taches_table" [paginator]="true" [rows]="10">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Date</th>
-      <th>Voiture</th>
-      <th>Mécanicien</th>
-      <th>Prestation</th>
-      <th>Prix Total</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-tache>
-    <tr>
-      <td>{{ tache.date_attribution | date : "dd/MM/yyyy" }}</td>
-      <td>{{ tache.id_voiture.immatriculation }}</td>
-      <td>{{ tache.id_mecanicien.nom }} {{ tache.id_mecanicien.prenom }}</td>
-      <td>
-        <ul>
-          <li *ngFor="let rep of tache.details_rep">
-            {{ rep.prestation }} ({{ rep.quantite }}x {{ rep.prix }} Ar)
-          </li>
-        </ul>
-      </td>
-      <td>{{ tache.prix_total | number }} Ar</td>
-    </tr>
-  </ng-template>
-</p-table>
+<div class="card">
+  <!-- Boutons pour filtrer les tâches -->
+  <div class="filter-buttons">
+    <p-button
+      label="En attente"
+      (click)="loadTacheEnAttente()"
+      [severity]="activeTab === 'en-attente' ? 'warn' : null"
+      class="filter-btn"
+    />
+    <p-button
+      label="En cours"
+      (click)="loadTacheEnCour()"
+      [severity]="activeTab === 'en-cours' ? 'warn' : null"
+      class="filter-btn"
+    />
+    <p-button
+      label="Terminé"
+      (click)="loadTacheTerminer()"
+      [severity]="activeTab === 'terminer' ? 'warn' : null"
+      class="filter-btn"
+    />
+  </div>
+
+  <div class="header-container">
+    <h1 class="p-text-left">{{ titre }}</h1>
+    <p-button
+      icon="pi pi-plus"
+      (click)="showDialog()"
+      severity="warn"
+      pTooltip="Ajouter une nouvelle tâche"
+      tooltipPosition="bottom"
+    />
+  </div>
+
+  <p-table [value]="taches_table" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Date</th>
+        <th>Voiture</th>
+        <th>Mécanicien</th>
+        <th>Prix Total</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tache>
+      <tr>
+        <td>{{ tache.date_attribution | date : "dd/MM/yyyy" }}</td>
+        <td>{{ tache.id_voiture.immatriculation }}</td>
+        <td>{{ tache.id_mecanicien.nom }} {{ tache.id_mecanicien.prenom }}</td>
+        <td>{{ tache.prix_total | number }} Ar</td>
+        <td>
+          <p-button
+            icon="pi pi-eye"
+            severity="warn"
+            pTooltip="Voir détails"
+            tooltipPosition="bottom"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
