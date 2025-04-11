@@ -1,27 +1,28 @@
-<<<<<<< HEAD
-<app-header>
-  
-</app-header>
+<app-header></app-header>
+<p-toast></p-toast>
 <div class="main-content">
   <div class="page-title">
-    <div class="header-container">
-      <h1 class="p-text-left">Liste des propos de réparations</h1>
-      <p-button icon="pi pi-plus"(click)="showDialog()" severity="warn"/>
-      
+    <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <h1 class="p-text-left" style="margin: 0;">Liste des propos de réparations</h1>
+      <div style="display: flex; align-items: center; gap: 1rem; z-index: 1;">
+        <input name="search" type="text" pInputText placeholder="Rechercher..." [(ngModel)]="searchQuery" (input)="filterPropos()"style="width: 200px;"/>
+        <p-button icon="pi pi-plus" (click)="showDialog()" severity="warn"></p-button>
+      </div>
     </div>
-    <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="displayedPropos" [paginator]="true" [rows]="rowsPerPage" [totalRecords]="totalPropos" [rowsPerPageOptions]="rowsPerPageOptions"(onPageChange)="onPageChange($event)" [tableStyle]="{ 'min-width': '60rem' }">
         <ng-template pTemplate="header">
             <tr>
                 <th class="center-align">Intitule</th>
                 <th class="center-align">Action</th>
             </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-item>
+        </ng-template>  
+        <ng-template pTemplate="body" let-propos>
             <tr>
-                <td class="center-align">{{ item.intitule }}</td>
-                <!-- <td class="center-align">{{ item._id }}</td> -->
+                <td class="center-align">{{ propos.intitule }}</td>
+                <!-- <td class="center-align">{{ propos._id }}</td> -->
                 <td class="center-align" >
-                  <p-button icon="pi pi-trash" severity="danger" [style]="{'background-color':'transparent', color:'red', 'border-color':'red'}"/>
+                  <p-button icon="pi pi-trash" severity="danger" [style]="{'background-color':'transparent', color:'red', 'border-color':'red'}" (click)="confirmAction(propos._id)"/>
+                  <p-confirmDialog></p-confirmDialog>
                   <p-button icon="pi pi-pencil"  severity="warn" [style]="{'background-color':'transparent', color:'orange', 'border-color':'orange', 'margin-left':'10px'}"/>
                 </td>
             </tr>
@@ -30,109 +31,13 @@
     <p-dialog header="Nouveau propos" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
       <form [formGroup]="formPropos" (ngSubmit)="onSubmit()">
         <div class="p-field">
-          <input
-            id="intitule"
-            type="text"
-            pInputText
-            formControlName="intitule"
-            class="p-inputtext p-component"
-            placeholder="Entrez l'intitulé du propos"
-          />
-          <div *ngIf="formPropos.get('intitule')?.invalid && formPropos.get('intitule')?.touched">
-              <p-message severity="error">Intitulé du propos requis.</p-message>
-          </div>
+          <input id="intitule" type="text" pInputText formControlName="intitule" class="p-inputtext p-component" placeholder="Entrez l'intitulé du propos" [style]="{color:'white'}"/>
         </div>
         <div class="flex justify-end gap-2">
           <p-button label="Annuler" severity="secondary" (click)="visible = false" />
-          <p-button label="Ajouter" type="submit" severity="warn" [disabled]="formPropos.invalid"/>
-      </div>
-      </form>
-  </p-dialog>
-  
-  
-  
-  </div>
-</div>
-=======
-<app-header></app-header>
-<div class="page-title">
-  <div class="header-container">
-    <h1 class="p-text-left">Liste des propos de réparations</h1>
-    <p-button icon="pi pi-plus" (click)="showDialog()" severity="warn" />
-  </div>
-  <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
-    <ng-template pTemplate="header">
-      <tr>
-        <th class="center-align">Intitule</th>
-        <th class="center-align">Action</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-item>
-      <tr>
-        <td class="center-align">{{ item.intitule }}</td>
-        <td class="center-align">
-          <p-button
-            icon="pi pi-trash"
-            severity="danger"
-            [style]="{
-              'background-color': 'transparent',
-              color: 'red',
-              'border-color': 'red'
-            }"
-          />
-          <p-button
-            icon="pi pi-pencil"
-            severity="warn"
-            [style]="{
-              'background-color': 'transparent',
-              color: 'orange',
-              'border-color': 'orange',
-              'margin-left': '10px'
-            }"
-          />
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-  <p-dialog
-    header="Nouveau propos"
-    [modal]="true"
-    [(visible)]="visible"
-    [style]="{ width: '25rem' }"
-  >
-    <form [formGroup]="formPropos" (ngSubmit)="onSubmit()">
-      <div class="p-field">
-        <input
-          id="intitule"
-          type="text"
-          pInputText
-          formControlName="intitule"
-          class="p-inputtext p-component"
-          placeholder="Entrez l'intitulé du propos"
-        />
-        <div
-          *ngIf="
-            formPropos.get('intitule')?.invalid &&
-            formPropos.get('intitule')?.touched
-          "
-        >
-          <p-message severity="error">Intitulé du propos requis.</p-message>
+          <p-button label="Ajouter" type="submit" severity="warn"/>
         </div>
-      </div>
-      <div class="flex justify-end gap-2">
-        <p-button
-          label="Annuler"
-          severity="secondary"
-          (click)="visible = false"
-        />
-        <p-button
-          label="Ajouter"
-          type="submit"
-          severity="warn"
-          [disabled]="formPropos.invalid"
-        />
-      </div>
-    </form>
-  </p-dialog>
+      </form>
+    </p-dialog>
+  </div>
 </div>
->>>>>>> aa022931c6b54337be097d02c35ba4f3a981cc77

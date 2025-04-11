@@ -5,12 +5,13 @@
 }
 
 app-menubar {
-    width: 1000px;
+    width: 1075px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     margin-left: 270px;
+    float:left;
 }
 
 .content {
@@ -24,4 +25,11 @@ app-sidebar {
     flex-shrink: 0;
 }
 
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    /* background: #f5f5f5; */
+    min-height: calc(100vh - 60px);
+    overflow-y: auto;
+}
 
