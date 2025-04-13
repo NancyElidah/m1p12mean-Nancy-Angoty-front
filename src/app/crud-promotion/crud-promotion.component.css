@@ -1,0 +1,112 @@
+.center-align {
+    text-align: center;
+}
+.page-title{
+    margin-top: -500px;
+    margin-left: 300px;
+    float: left;
+}
+    
+.p-inputtext {
+width: 100%;
+padding: 10px;
+border-radius: 5px;
+border: 1px solid #ccc;
+}
+
+.p-inputtext:focus {
+border-color: #007ad9; 
+}
+
+.p-button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f44336; 
+    color: white;
+    font-weight: bold;
+}
+    
+.p-button[disabled] {
+    background-color: #cccccc; 
+}
+    
+.p-button:hover {
+    background-color: #d32f2f; 
+}
+    
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+  
+::ng-deep .custom-scroll .p-scrollpanel-content {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    margin-top: 20px;
+}
+      
+.horizontal-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    min-width: max-content; /* important pour forcer le scroll horizontal */
+    max-width: 200px;
+}
+      /* .horizontal-container { */
+        /* display: grid; */
+  /* grid-auto-flow: column; s'étend en colonne */
+  /* grid-template-rows: repeat(2, 130px); 2 lignes */
+  /* gap: 1rem; */
+  /* min-width: max-content; / */
+      /* } */
+ 
+      .box {
+        width: 250px;
+        height: 350px;
+        background-color: #1e1e1e;
+        color: #dbab26;
+        display: flex;
+        flex-direction: column; /* ✅ pour empiler en colonne */
+        justify-content: flex-start; /* ✅ aligner en haut */
+        padding: 1rem; /* ✅ ajoute du padding pour éviter que le texte colle au bord */
+        border-radius: 8px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(255, 235, 59, 0.2);
+        border: 1px solid #ffeb3b40;
+        font-weight: bold;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 235, 59, 0.3);
+    cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    justify-content: right; /* ou space-between / flex-start selon ton besoin */
+    gap: 10px; /* espace entre les boutons */
+    margin-top: 10px;
+  }
+  
+.date-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+      
+.date-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.full-width-dropdown {
+    width: 100%;
+    text-align: center;
+}
+    

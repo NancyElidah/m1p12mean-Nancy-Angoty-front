@@ -1,20 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Prestation } from '../models/Prestation';
+import { Promotion } from '../models/Promotion';
 import { catchError, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
-  providedIn: 'root',  
+  providedIn: 'root',
 })
-export class PrestationService {
-  private uri = 'http://localhost:5000/prestation/';
+export class PromotionService {
+  private uri = 'http://localhost:5000/promotion/';
 
   constructor(private http: HttpClient) {}
-  addPrestation(prestation: Prestation): Observable<any> {
+  addPromotion(promotions: Promotion): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  
-    return this.http.post<any>(`${this.uri}create`, prestation, { headers }).pipe(
+    return this.http.post<any>(`${this.uri}create`, promotions, { headers }).pipe(
       catchError((error) => {
         let errorMessage = 'Erreur inattendue.';
         if (error.error?.error) {
@@ -25,14 +25,9 @@ export class PrestationService {
     );
   }
 
-  getPrestationListe(): Observable<Prestation[]> {
-    return this.http.get<{ prestation: Prestation[] }>(`${this.uri}getAll`).pipe(
-      map((data) => data.prestation) 
-    );
-  }
-
-  validatePrestation(prestation: Prestation): Observable<any> {
-    return this.http.post<any>(`${this.uri}validate`, prestation).pipe(
+  validateForm(promotions: Promotion): Observable<any> {
+    console.log("ato amin'ny validation", promotions);
+    return this.http.post<any>(`${this.uri}validate`, promotions).pipe(
       catchError((error) => {
         let errorMessage = 'Une erreur de validation est survenue.';
         if (error.error?.error) {
@@ -44,16 +39,34 @@ export class PrestationService {
     );
   }
 
-  getPrestation(page: number, limit: number): Observable<any> {
+  getPrestationListe(): Observable<Promotion[]> {
+    return this.http.get<{ promotions: Promotion[] }>(`${this.uri}getAll`).pipe(
+      map((data) => data.promotions) 
+    );
+  }
+
+  getPromotions(page: number, limit: number): Observable<any> {
     return this.http.get<any>(`${this.uri}findAll?page=${page}&limit=${limit}`).pipe(
       catchError((error) => {
-        console.error('Erreur lors de la récupération des propos:', error);
-        return throwError(() => new Error('Une erreur s\'est produite lors de la récupération des propos.'));
+        console.error('Erreur lors de la récupération des promotions:', error);
+        return throwError(() => new Error('Une erreur s\'est produite lors de la récupération des promotions.'));
       })
     );
   }
 
-  deletePrestation(id: string): Observable<any> {
+  validatePromotion(id: string, statut: number): Observable<any> {
+    return this.http.patch<any>(`${this.uri}validate`, { id, statut }).pipe(
+      catchError((error) => {
+        let errorMessage = 'Une erreur est survenue lors du changement de statut.';
+        if (error.error?.error) {
+          errorMessage = error.error.error;
+        }
+        return throwError(() => new Error(errorMessage));
+      })
+    );
+  }
+
+  retirerPromotion(id: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { id };
     return this.http.request<any>('delete', `${this.uri}delete`, { headers,body}).pipe(
@@ -67,5 +80,5 @@ export class PrestationService {
       })
     );
   }
-  
+
 }

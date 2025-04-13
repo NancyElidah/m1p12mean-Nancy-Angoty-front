@@ -1,0 +1,50 @@
+<app-header></app-header>
+<p-toast></p-toast>
+<div class="page-title">
+    <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+        <h1 class="p-text-left" style="margin: 0;">Liste des promotions</h1>
+        <div style="display: flex; align-items: center; gap: 1rem; z-index: 1;">
+          <p-button icon="pi pi-plus" (click)="showDialog()" severity="warn"></p-button>
+        </div>
+      <p-scrollPanel styleClass="custom-scroll" [style]="{ width: '750px', height: '500px' }" tabindex="0">
+        <div class="horizontal-container">
+          <div class="box" *ngFor="let item of items">
+            <h3 [style]="{'text-align':'center'}">{{ item.intitule }}</h3>
+            <p [style]="{'margin-top':'20px'}"><strong>Prestation :</strong> {{ item.idPrestation?.intitule }}</p>
+            <p><strong>Remise :</strong> {{ item.pourcentage }}%</p>
+            <p><strong>Du :</strong> {{ item.debut | date:'dd MMMM yyyy' }}</p>
+            <p><strong>Au :</strong> {{ item.fin | date:'dd MMMM yyyy' }}</p>
+            <div class="button-group">
+              <p-button icon="pi pi-trash" severity="danger" *ngIf="item.statut === 1" [style]="{'background-color':'transparent', color:'red', 'border-color':'red'}" (click)="retirerPromotion(item._id!)"></p-button>
+              <p-confirmDialog></p-confirmDialog>
+              <p-button icon="pi pi-pencil" severity="warn" *ngIf="item.statut === 1" [style]="{'background-color':'transparent', color:'orange', 'border-color':'orange'}"></p-button>
+              <p-button icon="pi pi-check" severity="success" *ngIf="item.statut === 1" [style]="{'background-color':'transparent', color:'green', 'border-color':'green'}" (click)="validerPromotion(item._id!)"></p-button>
+            </div>
+          </div>
+        </div>
+      </p-scrollPanel>
+      <p-dialog header="Nouvelle promotion" [modal]="true" [(visible)]="visible" [style]="{ width: '35rem' }">
+        <form [formGroup]="formPromotion" (ngSubmit)="onSubmit()">
+          <div class="p-field">
+            <p><input id="intitule" type="text" pInputText formControlName="intitule" class="p-inputtext p-component" placeholder="Entrez une description de la promotion" /></p>
+            <div class="date-row">
+              <div class="date-field">
+                <label [style]="{'color':'orange'}">Date début :</label>
+                <input type="date" pInputText formControlName="debut" class="p-inputtext p-component" />
+              </div>
+              <div class="date-field">
+                <label [style]="{'color':'orange'}">Date fin :</label>
+                <input type="date" pInputText formControlName="fin" class="p-inputtext p-component" />
+              </div>
+            </div>
+            <p><input id="pourcentage" type="number" pInputText formControlName="pourcentage" class="p-inputtext p-component" placeholder="Entrez la remise de la promotion" /></p>
+            <p-dropdown id="prestation" [options]="itemsPrestation" formControlName="idPrestation" placeholder="-- Veuillez choisir une prestation --" styleClass="full-width-dropdown"></p-dropdown>
+          </div>
+          <div class="flex justify-end gap-2">
+            <p-button label="Annuler" severity="secondary" (click)="visible = false"></p-button>
+            <p-button label="Ajouter" type="submit" severity="warn"></p-button>
+          </div>
+        </form>
+      </p-dialog> 
+</div>
+</div>

@@ -1,10 +1,10 @@
 export class Prestation {
-    idPrestation?: string;
+    _id?: string;
     intitule!: string;
     prix!: number;
     idPropos?: string[];  
     prestationType?: {
-      intitule: string;  // L'intitulé du Propos
+      intitule: string;
     };
   }
 

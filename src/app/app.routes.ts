@@ -8,6 +8,7 @@ import { InscriptionComponent } from './mec-manager/mecanicien/inscription/inscr
 import { CrudProposComponent } from './crud-propos/crud-propos.component';
 import { CrudPrestationComponent } from './crud-prestation/crud-prestation.component';
 import { CrudPieceComponent } from './crud-piece/crud-piece.component';
+import { CrudPromotionComponent } from './crud-promotion/crud-promotion.component';
 import { ListeTacheComponent } from './mec-manager/manager/liste-tache/liste-tache.component';
 
 export const routes: Routes = [
@@ -21,4 +22,5 @@ export const routes: Routes = [
   { path: 'prestations', component: CrudPrestationComponent },
   { path: 'piece', component: CrudPieceComponent },
   { path: 'tache', component: ListeTacheComponent },
+  { path: 'promotions', component: CrudPromotionComponent }
 ];
